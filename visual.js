@@ -2,12 +2,12 @@ import {Text} from './text.js';
 import {Particle} from './particle.js';
 
 export class Visual {
-    constructor(){
+    constructor() {
         this.text = new Text();
         
         this.particles - [];
         this.mouse = {
-            x: 0, y:0, radius:100,
+            x: 0, y: 0, radius: 100,
         };
         document.addEventListener('pointermove', this.onMove.bind(this), false);
 
@@ -45,7 +45,7 @@ export class Visual {
             const item = this.particles[i];
             const dx = this.mouse.x - item.x;
             const dy = this.mouse.y - item.y;
-            const dist = Math.sqrt(dx*dx + dy*dy);
+            const dist = Math.sqrt(dx * dx + dy * dy);
             const minDist = item.radius + this.mouse.radius;
 
             if (dist < minDist) {

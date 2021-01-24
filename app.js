@@ -1,6 +1,5 @@
 import {Visual} from './visual.js';
 
-
 class App {
     constructor() {
         this.setWebgl();
@@ -20,10 +19,10 @@ class App {
             }
         });
     }
-    setWebgl(){
+    setWebgl() {
         this.renderer = new PIXI.Renderer({
             width : document.body.clientWidth,
-            height : document.body.clientHeigth,
+            height : document.body.clientHeight,
             antialias : true,
             transparent : false,
             resolution : (window.devicePixelRatio > 1) ? 2 :1,
@@ -35,9 +34,9 @@ class App {
 
         this.stage = new PIXI.Container();
 
-        const blurFfilter = new PIXI.filters.blurFfilter();
-        blurFfilter.blur = 10;
-        blurFfilter.autoFit = true;
+        const BlurFfilter = new PIXI.filters.BlurFilter();
+        BlurFfilter.blur = 10;
+        BlurFfilter.autoFit = true;
 
         const fragSource = `
             precision mediump float;
@@ -64,14 +63,14 @@ class App {
             mb: 41.0 / 255.0,
         };
         const thresholdFilter = new PIXI.Filter(null, fragSource, uniformsData);
-        this.stage.filters = [blurFfilter, thresholdFilter];
+        this.stage.filters = [BlurFfilter, thresholdFilter];
         this.stage.filterArea = this.renderer.screen;
     }
 
     
     resize() {
         this.stageWidth = document.body.clientWidth;
-        this.stageheight = document.body.clientHeigth;
+        this.stageheight = document.body.clientHeight;
 
         this.renderer.resize(this.stageWidth, this.stageHeight);
 
